@@ -75,13 +75,11 @@ while ((randomNumber / 10) > 0)
 {
     number = number*10 + (randomNumber % 10);
     Console.WriteLine(number);
-    randomNumber = randomNumber/10;
-    
+    randomNumber = randomNumber/10;   
 }
 number = number*10 + randomNumber;
 Console.WriteLine(number);
 
-/*
 int a = 1535658967;
 int b;
 int  c = 0;
@@ -90,8 +88,7 @@ while (a != 0)
     b = a;
     b = b % 10;
     a = a / 10;
-    // c = c + b;
     Console.Write(b);
 }
-*/
+
 

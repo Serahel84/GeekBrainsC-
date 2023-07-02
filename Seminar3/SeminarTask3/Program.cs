@@ -1,8 +1,7 @@
 ﻿// Задача 19
 // Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
 
-
-Console.WriteLine("введите пятизначное число");
+Console.WriteLine("введите число");
 int Number;
 Number = int.Parse(Console.ReadLine());
 
@@ -11,10 +10,9 @@ char[] CharArray = NumberString.ToCharArray();
 Array.Reverse(CharArray);
 //Console.WriteLine(CharArray);
 bool checker = false;
-
+int Counter = 0;
 while (Number > 100)
 {
-    int Counter = 0;
     Number = Number / 10;
     if (CharArray[Counter] !=  NumberString[Counter])
     {
@@ -22,7 +20,7 @@ while (Number > 100)
         break;
     }
     else checker = true;
-
+    Counter++;
 }
 if (checker)
 {
@@ -32,8 +30,6 @@ else
 {
     Console.WriteLine("нет");
 }
-
-
 //Задача 21
 //Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 
