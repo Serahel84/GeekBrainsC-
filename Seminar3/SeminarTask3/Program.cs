@@ -14,26 +14,35 @@ void palindrome(int Number)
     Array.Reverse(CharArray);
     bool checker = false;
     int Counter = 0;
-    while (Number > 100)
-    {
-        Number = Number / 10;
-        if (CharArray[Counter] !=  NumberString[Counter])
-        {
-            checker = false;
-            break;
-        }
-        else checker = true;
-        Counter++;
-    }
-    if (checker)
-    {
-        Console.WriteLine("число является полиндромом");
-    }
-    else
+    int Value = Number;
+    if (Number < 0)
     {
         Console.WriteLine("число не является полиндромом");
     }
+    else
+    {
+    while (Number > Value / 2)
+        {
+            Number = Number / 10;
+            if (CharArray[Counter] !=  NumberString[Counter])
+            {
+                checker = false;
+                break;
+            }
+            else checker = true;
+            Counter++;
+        }
+        if (checker)
+        {
+            Console.WriteLine("число является полиндромом");
+        }
+        else
+        {
+            Console.WriteLine("число не является полиндромом");
+        }
+    }
 }
+
 //Задача 21
 //Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 double CoordLength(double X, double Y, double Z, double U, double V, double W)
