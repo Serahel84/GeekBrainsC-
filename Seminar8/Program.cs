@@ -1,203 +1,248 @@
-﻿// Cоздайте двумерный массив случайных чисел.
-// вывести среднее арифметическое каждого столбца
+﻿// Таня Задайте двумерный массив. Напишите программу, которая поменяет местами первую и последнюю строку массива
 
-int Prompt(string message)
-{
-    Console.WriteLine(message);
-    string value = Console.ReadLine();
-    int result = Convert.ToInt32(value);
-    return result;
+//Methods//////////////////////////////////
+int[,] FillIntMatrix(int m, int n){
+    int[,] matrix = new int[m,n];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            matrix[i,j] =  new Random().Next(-100,100);
+        }
+    }
+    return matrix;
 }
-void PrintIntArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($" {array[i, j]}");
+
+void Print2dIntMatrix(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            Console.Write(string.Format("{0,8}", matrix[i,j]));
         }
         Console.WriteLine();
     }
 }
-int[,] GetRandomIntArray(int countRow, int countColum)
-{
-    int[,] array = new int[countRow, countColum];
-    for (int i = 0; i < countRow; i++)
-    {
-        for (int j = 0; j < countColum; j++)
-        {
-            array[i, j] = new Random().Next(2, 9);
-        }
-    }
-    return array;
-}
-double[] GetMeanColumn(int[,] array)
-{
-    double[] ResultArray = new double[array.GetLength(1)];
-    for (int i = 0; i < array.GetLength(1); i++)
-    {
-        double sumColumn = 0;
-        for (int j = 0; j < array.GetLength(0); j++)
-        {
-            sumColumn = sumColumn + array[j, i];
-        }
-        ResultArray[i] = sumColumn / array.GetLength(0);
-    }
-    return ResultArray;
-}
-//---------------------------
-int countRow = Prompt("Введите количество строк ");
-int countColum = Prompt("Введите количество столбцов ");
-int[,] array = GetRandomIntArray(countRow, countColum);
-PrintIntArray(array);
 
+int[,] ReverseFirstLastRow(int[,] matrix){
+    int tempElement = 0;
+
+    for (int i = 0; i < matrix.GetLength(1); i++){
+        tempElement = matrix[0,i];
+        matrix[0,i] = matrix[matrix.GetLength(0) - 1,i];
+        matrix[matrix.GetLength(0) - 1,i] = tempElement;
+    }
+    return matrix;
+}
+/////////////////////////////////////////////
+
+int[,] testArray = FillIntMatrix(5, 4);
+Print2dIntMatrix(testArray);
 Console.WriteLine();
-string str = string.Join(", ", GetMeanColumn(array));
-Console.WriteLine(str);
+int[,] resultArray = ReverseFirstLastRow(testArray);
+Print2dIntMatrix(resultArray);
 
-// Задайте двумерный массив. Найдите сумму элементов, 
-// находящихся на главной диагонали
 
-int Prompt(string message)
-{
-    Console.WriteLine(message);
-    string value = Console.ReadLine();
-    int result = Convert.ToInt32(value);
-    return result;
+// Димон Задайте двумерный массив. Напишите программу, которая поменяет местами первую и последнюю строку массива
+
+//Methods//////////////////////////////////
+int[,] FillIntMatrix(int m, int n){
+    int[,] matrix = new int[m,n];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            matrix[i,j] =  new Random().Next(-100,100);
+        }
+    }
+    return matrix;
 }
-void PrintIntArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($" {array[i, j]}");
+
+void Print2dIntMatrix(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            Console.Write(string.Format("{0,8}", matrix[i,j]));
         }
         Console.WriteLine();
     }
 }
-int[,] GetRandomIntArray(int countRow, int countColum)
-{
-    int[,] array = new int[countRow, countColum];
-    for (int i = 0; i < countRow; i++)
-    {
-        for (int j = 0; j < countColum; j++)
-        {
-            array[i, j] = new Random().Next(2, 9);
+
+int[,] ReverseArray(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            int temp = matrix[j,i];
+            matrix[j,i] = matrix[i,j];
+            //matrix[i,j] = temp;
         }
     }
-    return array;
+    return matrix;
 }
-int GetDiagonalSum(int[,] array)
-{
-    int sum = 0;
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            if (i == j)
-            {
-                sum = sum + array[i, j];
+
+
+int[,] testArray = FillIntMatrix(5, 5);
+Print2dIntMatrix(testArray);
+Console.WriteLine();
+ReverseArray(testArray);
+Console.WriteLine();
+Print2dIntMatrix(testArray);
+
+// Задайте двумерный массив. Напишите программу, которая заменяет строки на столбцы. 
+//В случае, если это невозможно, программа должна вывести сообщение для пользователя
+
+//Methods//////////////////////////////////
+int[,] FillIntMatrix(int m, int n){
+    int[,] matrix = new int[m,n];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            matrix[i,j] =  new Random().Next(-100,100);
+        }
+    }
+    return matrix;
+}
+
+void Print2dIntMatrix(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            Console.Write(string.Format("{0,8}", matrix[i,j]));
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] TranspondSquareArray(int[,] matrix){
+    if (matrix.GetLength(1) != matrix.GetLength(0)){
+        Console.WriteLine("Incorrect data");
+        Environment.Exit(0);
+    }
+    int[,] tmpMatrix = new int[matrix.GetLength(1),matrix.GetLength(0)];
+
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            tmpMatrix[j,i] = matrix[i,j];
+        }        
+    } 
+    return tmpMatrix;   
+}
+//////////////////////////////////////
+int[,] testArray = FillIntMatrix(4, 4);
+Print2dIntMatrix(testArray);
+Console.WriteLine();
+int[,] newArray = TranspondSquareArray(testArray);
+Print2dIntMatrix(newArray);
+
+// Задайте двумерный массив из целых чисел. 
+//Напишите программу, которая удалит строку и столбец, на пересечении которых расположен наименьший элемент массива
+
+//Methods//////////////////////////////////
+int[,] FillIntMatrix(int m, int n){
+    int[,] matrix = new int[m,n];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            matrix[i,j] =  new Random().Next(-100,100);
+        }
+    }
+    return matrix;
+}
+
+void Print2dIntMatrix(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            Console.Write(string.Format("{0,8}", matrix[i,j]));
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] ZeroRawColWithMinElement(int[,] matrix){
+    int row = 0;
+    int col = 0;
+    int minEl = int.MaxValue;
+
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            if (matrix[i,j] < minEl){
+                row = i;
+                col = j;
+                minEl = matrix[i,j];
             }
         }
+        
+    }   
+
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        matrix[i,col] = 0;
     }
-    return sum;
+
+    for (int i = 0; i < matrix.GetLength(1); i++){
+        matrix[row,i] = 0;
+    } 
+
+    Console.WriteLine($"col={col}, row = {row}"); 
+    Console.WriteLine(); 
+    return matrix;
+
 }
-//---------------------------
-int countRow = Prompt("Введите количество строк ");
-int countColum = Prompt("Введите количество столбцов ");
-int[,] array = GetRandomIntArray(countRow, countColum);
-PrintIntArray(array);
+//////////////////////////////////////
+int[,] testArray = FillIntMatrix(4, 4);
+Print2dIntMatrix(testArray);
 Console.WriteLine();
-Console.WriteLine(GetDiagonalSum(array));
+int[,] newArray = ZeroRawColWithMinElement(testArray);
+Print2dIntMatrix(newArray);
 
-// Задайте двумерный массив. Найдите элементы, у которых 
-// оба индекса чётные, и замените эти элементы на их квадраты.
 
-int Prompt(string message)
-{
-    Console.WriteLine(message);
-    string value = Console.ReadLine();
-    int result = Convert.ToInt32(value);
-    return result;
+// Задайте двумерный массив. Напишите программу, которая заменяет строки на столбцы. 
+//В случае, если это невозможно, программа должна вывести сообщение для пользователя
+
+//Methods//////////////////////////////////
+int[,] FillIntMatrix(int m, int n){
+    int[,] matrix = new int[m,n];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            matrix[i,j] =  new Random().Next(-100,100);
+        }
+    }
+    return matrix;
 }
-void PrintIntArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($" {array[i, j]}");
+
+void Print2dIntMatrix(int[,] matrix){
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            Console.Write(string.Format("{0,8}", matrix[i,j]));
         }
         Console.WriteLine();
     }
 }
-int[,] GetRandomIntArray(int countRow, int countColum)
-{
-    int[,] array = new int[countRow, countColum];
-    for (int i = 0; i < countRow; i++)
-    {
-        for (int j = 0; j < countColum; j++)
-        {
-            array[i, j] = new Random().Next(2, 9);
-        }
-    }
-    return array;
-}
-int[,] GetSqrIntArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i = i + 2)
-    {
-        for (int j = 0; j < array.GetLength(1); j = j + 2)
-        {
-            array[i, j] = array[i, j] * array[i, j];//Math.Pow(array[i, j], 2);
-        }
-    }
-    return array;
-}
-//---------------------------
-int countRow = Prompt("Введите количество строк ");
-int countColum = Prompt("Введите количество столбцов ");
-int[,] array = GetRandomIntArray(countRow, countColum);
-PrintIntArray(array);
-Console.WriteLine();
-int[,] ResultArray = GetSqrIntArray(array);
-PrintIntArray(ResultArray);
 
-// Задайте двумерный массив размера m на n, каждый элемент 
-// в массиве находится по формуле: Aₘₙ = m+n. Выведите полученный массив на экран.
-int Prompt(string message)
-{
-    Console.WriteLine(message);
-    string value = Console.ReadLine();
-    int result = Convert.ToInt32(value);
-    return result;
-}
-void PrintIntArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($" {array[i, j]}");
-        }
-        Console.WriteLine();
+/*int[,] TranspondSquareArray(int[,] matrix){
+    if (matrix.GetLength(1) != matrix.GetLength(0)){
+        Console.WriteLine("Incorrect data");
+        Environment.Exit(0);
     }
-}
-int[,] GetIntArray(int countRow, int countColum)
-{
-    int[,] array = new int[countRow, countColum];
-    for (int i = 0; i < countRow; i++)
-    {
-        for (int j = 0; j < countColum; j++)
-        {
-            array[i, j] = i + j;
-        }
+    int[,] tmpMatrix = new int[matrix.GetLength(1),matrix.GetLength(0)];
+
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < matrix.GetLength(1); j++){
+            tmpMatrix[j,i] = matrix[i,j];
+        }        
+    } 
+    return tmpMatrix;   
+}*/
+
+
+int[,] TranspondSquareArray(int[,] matrix){
+    if (matrix.GetLength(1) != matrix.GetLength(0)){
+        Console.WriteLine("Incorrect data");
+        Environment.Exit(0);
     }
-    return array;
+    
+    int tmpElement = 0;
+
+    for (int i = 0; i < matrix.GetLength(0); i++){
+        for (int j = 0; j < i; j++){
+            tmpElement = matrix[i,j];
+            matrix[i,j] = matrix[j,i];
+            matrix[j,i] = tmpElement;
+        }        
+    } 
+    return matrix;   
 }
-//---------------------------
-int countRow = Prompt("Введите количество строк ");
-int countColum = Prompt("Введите количество столбцов ");
-int[,] array = GetIntArray(countRow, countColum);
-PrintIntArray(array);
+//////////////////////////////////////
+int[,] testArray = FillIntMatrix(3, 3);
+Print2dIntMatrix(testArray);
+Console.WriteLine();
+int[,] newArray = TranspondSquareArray(testArray);
+Print2dIntMatrix(newArray);
